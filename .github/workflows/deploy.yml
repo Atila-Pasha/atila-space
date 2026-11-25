@@ -18,8 +18,8 @@ jobs:
     env:
       GITHUB_PAGES: "true"
       GITHUB_REPOSITORY: ${{ github.repository }}
-      CUSTOM_DOMAIN: ${{ vars.CUSTOM_DOMAIN }}
-      NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL || format('https://{0}.github.io', github.repository_owner) }}
+      CUSTOM_DOMAIN: "true"
+      NEXT_PUBLIC_SITE_URL: https://atilapasha.ir
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
