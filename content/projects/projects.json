@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Sample Data Notebook",
+    "slug": "sample-data-notebook",
+    "description": "Placeholder project demonstrating structured project metadata.",
+    "longDescription": "Sample content only; replace this entry with a real project when ready.",
+    "technologies": ["Python", "Jupyter"],
+    "category": "data-science",
+    "status": "planned",
+    "repositoryUrl": "https://github.com/USERNAME/REPOSITORY",
+    "featured": false
+  },
+  {
+    "name": "Sample Static Toolkit",
+    "slug": "sample-static-toolkit",
+    "description": "Placeholder record showing how project details will be managed as JSON.",
+    "technologies": ["TypeScript", "Next.js"],
+    "category": "software",
+    "status": "planned",
+    "demoUrl": "https://example.com",
+    "featured": false
+  }
+]

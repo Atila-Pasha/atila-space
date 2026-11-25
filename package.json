@@ -1,0 +1,43 @@
+{
+  "name": "atila-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "validate:content": "tsx scripts/validate-content.ts && tsx scripts/generate-rss.ts",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "build": "npm run validate:content && next build",
+    "build:pages": "npm run build && pagefind --site out --glob '**/*.html'"
+  },
+  "dependencies": {
+    "gray-matter": "4.0.3",
+    "katex": "0.16.22",
+    "next": "16.4.6",
+    "next-mdx-remote": "5.0.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "zod": "4.1.12",
+    "rehype-katex": "7.0.1",
+    "rehype-pretty-code": "0.14.1",
+    "remark-math": "6.0.0",
+    "shiki": "3.12.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "0.5.19",
+    "@types/katex": "0.16.7",
+    "@types/gray-matter": "4.0.9",
+    "@types/node": "22.19.1",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.4.6",
+    "pagefind": "1.4.0",
+    "postcss": "8.5.6",
+    "tailwindcss": "3.4.19",
+    "tsx": "4.20.6",
+    "typescript": "5.9.3",
+    "autoprefixer": "10.4.22",
+    "@eslint/eslintrc": "3.3.1"
+  }
+}
