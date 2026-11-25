@@ -10,7 +10,7 @@ const shared = {
   tags: z.array(z.string()).default([]), featured: z.boolean().default(false), published: z.boolean().default(true),
 };
 export const articleSchema = z.object({ ...shared, description: z.string().trim().min(1), updatedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(), cover: z.string().optional() });
-export const noteSchema = z.object({ ...shared, id: z.string().trim().min(1), language: z.enum(['en', 'fa']).optional() });
+export const noteSchema = z.object({ ...shared, id: z.string().trim().min(1), language: z.enum(['en', 'fa']).optional(), cover: z.string().optional() });
 export const projectSchema = z.object({
   name: z.string().trim().min(1), slug: slugSchema, description: z.string().trim().min(1), longDescription: z.string().optional(),
   technologies: z.array(z.string()).min(1), category: z.string().trim().min(1), status: z.enum(['active', 'archived', 'planned']),

@@ -5,7 +5,7 @@ export type Article = {
 };
 export type Note = {
   id: string; title: string; slug: string; date: string; category: string; tags: string[];
-  featured: boolean; published: boolean; language?: 'en' | 'fa'; sourcePath: string; body: string;
+  featured: boolean; published: boolean; language?: 'en' | 'fa'; cover?: string; sourcePath: string; body: string;
 };
 export type Project = {
   name: string; slug: string; description: string; longDescription?: string; technologies: string[];

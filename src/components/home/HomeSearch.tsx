@@ -3,9 +3,10 @@
 import Link from 'next/link';
 import type { Route } from 'next';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import type { SearchItem } from '@/lib/searchItems';
 import { Icon } from './Icon';
 
-type SearchItem = { title: string; description: string; href: string; kind: string };
+export type { SearchItem } from '@/lib/searchItems';
 
 export function HomeSearch({ items }: { items: SearchItem[] }) {
   const [query, setQuery] = useState('');
@@ -47,9 +48,13 @@ export function HomeSearch({ items }: { items: SearchItem[] }) {
     />
     <kbd>Ctrl <span>+</span> K</kbd>
     {isOpen && matches.length > 0 && <div className="search-results" role="listbox">
-      {matches.map((item) => <Link href={item.href as Route} className="search-result" key={`${item.kind}-${item.href}`} role="option">
-        <span className="search-result-kind">{item.kind}</span><span className="search-result-title">{item.title}</span>
-      </Link>)}
+      {matches.map((item) => item.external
+        ? <a href={item.href} className="search-result" key={`${item.kind}-${item.href}`} role="option" target="_blank" rel="noreferrer">
+            <span className="search-result-kind">{item.kind}</span><span className="search-result-title">{item.title}</span>
+          </a>
+        : <Link href={item.href as Route} className="search-result" key={`${item.kind}-${item.href}`} role="option">
+            <span className="search-result-kind">{item.kind}</span><span className="search-result-title">{item.title}</span>
+          </Link>)}
     </div>}
   </div>;
 }

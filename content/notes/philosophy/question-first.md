@@ -6,7 +6,7 @@ date: "2026-02-02"
 category: philosophy
 tags: [questions, sample]
 featured: true
-published: true
+published: false
 language: en
 ---
 

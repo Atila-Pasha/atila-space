@@ -6,7 +6,7 @@ date: "2026-02-03"
 category: science
 tags: [science, sample]
 featured: false
-published: true
+published: false
 language: fa
 ---
 

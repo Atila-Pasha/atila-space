@@ -1,19 +1,20 @@
 import Link from 'next/link';
 import { mainNavigation } from '@/data/navigation';
-import { publicAsset } from '@/lib/site';
-import type { Article, Note, Project } from '@/types/content';
-import { HomeSearch } from './HomeSearch';
+import { githubProjects } from '@/data/githubProjects';
+import { createSearchItems } from '@/lib/searchItems';
+import type { Article, Note } from '@/types/content';
 import { Icon, type IconName } from './Icon';
-import { ThemeButton } from './ThemeButton';
+import { WorkspaceTopbar } from '@/components/layout/WorkspaceTopbar';
+import { HomePortraitScene } from './HomePortraitScene';
 
-type Props = { articles: Article[]; notes: Note[]; projects: Project[] };
+type Props = { articles: Article[]; notes: Note[] };
 
-export function HomePage({ articles, notes, projects }: Props) {
-  const searchItems = [
-    ...articles.map((item) => ({ title: item.title, description: item.description, href: `/articles/${item.slug}/`, kind: 'Article' })),
-    ...notes.map((item) => ({ title: item.title, description: item.body, href: `/notes/${item.slug}/`, kind: 'Note' })),
-    ...projects.map((item) => ({ title: item.name, description: item.description, href: `/projects/${item.slug}/`, kind: 'Project' })),
-  ];
+export function HomePage({ articles, notes }: Props) {
+  const searchItems = createSearchItems(articles, notes);
+  const latestUpdate = [...articles, ...notes].reduce<string | undefined>(
+    (latest, item) => !latest || item.date > latest ? item.date : latest,
+    undefined,
+  );
 
   return <main className="portfolio-frame">
     <aside className="sidebar">
@@ -40,18 +41,16 @@ export function HomePage({ articles, notes, projects }: Props) {
     </aside>
 
     <section className="home-workspace">
-      <header className="topbar">
-        <HomeSearch items={searchItems} />
-        <ThemeButton />
-      </header>
+      <WorkspaceTopbar items={searchItems} />
       <section className="home-stage" aria-labelledby="home-title">
-        <div className="cosmos-backdrop" style={{ backgroundImage: `url("${publicAsset('/images/home-hero-cosmos.png')}")` }} aria-hidden="true" />
+        <HomePortraitScene />
         <div className="stage-vignette" aria-hidden="true" />
         <div className="hero-content">
           <div className="intro-copy">
             <div className="eyebrow"><Icon name="sparkle" /><span>PERSONAL SPACE</span><i /></div>
             <p className="hello-line">Hello, I’m</p>
             <h1 id="home-title">A<span>tila</span></h1>
+            <p className="nickname-line">But you can call me <strong>AtA</strong></p>
             <p className="role-line">Python Developer <b>·</b> Statistics Student <b>·</b> Lifelong Learner</p>
             <p className="hero-description">Exploring the intersection of code, mathematics,<br className="desktop-break" /> and human curiosity.</p>
             <div className="hero-actions">
@@ -60,11 +59,11 @@ export function HomePage({ articles, notes, projects }: Props) {
             </div>
           </div>
         </div>
-        <div className="stats-grid" aria-label="Published content counts">
+        <div className="stats-grid" aria-label="Portfolio activity">
           <StatCard count={articles.length} label="Articles" />
           <StatCard count={notes.length} label="Notes" />
-          <StatCard count={projects.length} label="Projects" />
-          <div className="stat-card stat-curiosity"><strong aria-hidden="true">∞</strong><span>Curiosity</span></div>
+          <StatCard count={githubProjects.length} label="Projects" />
+          <div className="stat-card stat-latest-update"><strong>{latestUpdate ? formatShortDate(latestUpdate) : '—'}</strong><span>Latest update</span></div>
         </div>
         <div className="scene-caption"><span /> A little space for ideas</div>
       </section>
@@ -74,4 +73,8 @@ export function HomePage({ articles, notes, projects }: Props) {
 
 function StatCard({ count, label }: { count: number; label: string }) {
   return <div className="stat-card"><strong>{String(count).padStart(2, '0')}</strong><span>{label}</span></div>;
+}
+
+function formatShortDate(date: string) {
+  return new Date(`${date}T12:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
 }

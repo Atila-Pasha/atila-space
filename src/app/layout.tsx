@@ -6,9 +6,10 @@ import { canonicalUrl, siteUrl } from '@/lib/site';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   alternates: { canonical: canonicalUrl('/'), types: { 'application/rss+xml': '/rss.xml' } },
-  title: { default: 'Atila Portfolio', template: '%s | Atila Portfolio' },
+  title: { default: 'AtA', template: 'AtA | %s' },
   description: 'Personal website and digital space.',
-  openGraph: { type: 'website', siteName: 'Atila Portfolio', title: 'Atila Portfolio', description: 'Personal website and digital space.' },
+  icons: { icon: '/favicon.png', shortcut: '/favicon.png', apple: '/favicon.png' },
+  openGraph: { type: 'website', siteName: 'AtA', title: 'AtA', description: 'Personal website and digital space.' },
   twitter: { card: 'summary_large_image' },
 };
 
