@@ -10,7 +10,7 @@ export function WorkspaceTopbar({ items }: { items: SearchItem[] }) {
     <HomeSearch items={items} />
     <div className="topbar-actions">
       <ThemeButton />
-      <Link className="profile-avatar" href="/about/" aria-label="About Atila" title="About Atila">
+      <Link className="profile-avatar" href="/about" aria-label="About Atila" title="About Atila">
         <Image src={publicAsset('/images/atila-avatar.webp')} alt="" fill sizes="40px" />
       </Link>
     </div>

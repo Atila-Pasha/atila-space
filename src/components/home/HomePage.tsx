@@ -32,10 +32,10 @@ export function HomePage({ articles, notes }: Props) {
       </nav>
       <div className="sidebar-footer">
         <div className="sidebar-orbit" aria-hidden="true"><span className="orbit-moon"><Icon name="moon" /></span><span className="orbit-dot" /><span className="orbit-star">✦</span></div>
-        <div className="contact-prompt"><p>Have an idea<br />to explore together?</p><Link href="/contact/">Contact me <Icon name="arrow" /></Link></div>
+        <div className="contact-prompt"><p>Have an idea<br />to explore together?</p><Link href="/contact">Contact me <Icon name="arrow" /></Link></div>
         <div className="social-links">
           <a href="https://github.com/Atila-Pasha" target="_blank" rel="noreferrer" aria-label="GitHub"><Icon name="github" /></a>
-          <Link href="/rss.xml" aria-label="Articles RSS feed"><Icon name="rss" /></Link>
+          <a href="/rss.xml" aria-label="Articles RSS feed"><Icon name="rss" /></a>
         </div>
       </div>
     </aside>
@@ -54,8 +54,8 @@ export function HomePage({ articles, notes }: Props) {
             <p className="role-line">Python Developer <b>·</b> Statistics Student <b>·</b> Lifelong Learner</p>
             <p className="hero-description">Exploring the intersection of code, mathematics,<br className="desktop-break" /> and human curiosity.</p>
             <div className="hero-actions">
-              <Link className="button button-primary" href="/projects/">Explore My Work <Icon name="arrow" /></Link>
-              <Link className="button button-secondary" href="/notes/">Read My Notes</Link>
+              <Link className="button button-primary" href="/projects">Explore My Work <Icon name="arrow" /></Link>
+              <Link className="button button-secondary" href="/notes">Read My Notes</Link>
             </div>
           </div>
         </div>

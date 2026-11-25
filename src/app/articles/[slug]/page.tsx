@@ -3,7 +3,10 @@ import { notFound } from 'next/navigation';
 import { findBySlug, getArticles } from '@/content/loaders';
 import { renderMarkdown } from '@/content/mdx';
 import { canonicalUrl } from '@/lib/site';
-export async function generateStaticParams() { return (await getArticles()).map(({ slug }) => ({ slug })); }
+export async function generateStaticParams() {
+  const articles = await getArticles();
+  return articles.length ? articles.map(({ slug }) => ({ slug })) : [{ slug: '__no-published-articles__' }];
+}
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params; const article = findBySlug(await getArticles(), slug);
   return article ? { title: article.title, description: article.description, alternates: { canonical: canonicalUrl(`/articles/${slug}/`) }, openGraph: { title: article.title, description: article.description, type: 'article', publishedTime: article.date, url: canonicalUrl(`/articles/${slug}/`) } } : {};

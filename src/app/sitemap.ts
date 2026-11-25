@@ -1,6 +1,9 @@
 import type { MetadataRoute } from 'next';
 import { getArticles, getNotes, getProjects } from '@/content/loaders';
 import { canonicalUrl } from '@/lib/site';
+
+export const dynamic = 'force-static';
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const fixed = ['', '/about', '/projects', '/articles', '/notes', '/stack', '/reading', '/now', '/contact'];
   const [articles, notes, projects] = await Promise.all([getArticles(), getNotes(), getProjects()]);
