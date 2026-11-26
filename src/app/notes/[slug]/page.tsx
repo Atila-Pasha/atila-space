@@ -9,7 +9,14 @@ export async function generateStaticParams() {
 }
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params; const note = findBySlug(await getNotes(), slug);
-  return note ? { title: note.title, description: note.body.slice(0, 160), alternates: { canonical: canonicalUrl(`/notes/${slug}/`) } } : {};
+  if (!note) return { robots: { index: false, follow: false } };
+  const url = canonicalUrl(`/notes/${slug}/`);
+  return {
+    title: note.title,
+    description: note.body.slice(0, 160),
+    alternates: { canonical: url },
+    openGraph: { title: note.title, description: note.body.slice(0, 160), type: 'article', publishedTime: note.date, url },
+  };
 }
 export default async function NotePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params; const note = findBySlug(await getNotes(), slug); if (!note) notFound();

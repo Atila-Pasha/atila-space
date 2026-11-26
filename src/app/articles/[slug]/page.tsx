@@ -9,7 +9,14 @@ export async function generateStaticParams() {
 }
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params; const article = findBySlug(await getArticles(), slug);
-  return article ? { title: article.title, description: article.description, alternates: { canonical: canonicalUrl(`/articles/${slug}/`) }, openGraph: { title: article.title, description: article.description, type: 'article', publishedTime: article.date, url: canonicalUrl(`/articles/${slug}/`) } } : {};
+  if (!article) return { robots: { index: false, follow: false } };
+  const url = canonicalUrl(`/articles/${slug}/`);
+  return {
+    title: article.title,
+    description: article.description,
+    alternates: { canonical: url },
+    openGraph: { title: article.title, description: article.description, type: 'article', publishedTime: article.date, url },
+  };
 }
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params; const article = findBySlug(await getArticles(), slug); if (!article) notFound();

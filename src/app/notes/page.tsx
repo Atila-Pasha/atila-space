@@ -4,12 +4,15 @@ import { PortfolioSidebar } from '@/components/layout/PortfolioSidebar';
 import { WorkspaceTopbar } from '@/components/layout/WorkspaceTopbar';
 import { getArticles, getNotes } from '@/content/loaders';
 import { createSearchItems } from '@/lib/searchItems';
+import { createPageMetadata } from '@/lib/seo';
 import { publicAsset } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: 'Notes',
-  description: 'Small thoughts, big ideas — notes by Atila Pasha.',
-};
+  description:
+    'Small thoughts, big ideas — notes and reflections by Atila Pashazadeh (Atila Pasha / آتیلا پاشازاده).',
+  path: '/notes/',
+});
 
 export default async function NotesPage() {
   const [articles, notes] = await Promise.all([getArticles(), getNotes()]);

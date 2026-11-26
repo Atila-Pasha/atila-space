@@ -5,14 +5,18 @@ import { WorkspaceTopbar } from '@/components/layout/WorkspaceTopbar';
 import { TechLogo } from '@/components/stack/TechLogo';
 import { getArticles, getNotes } from '@/content/loaders';
 import { createSearchItems } from '@/lib/searchItems';
+import { createPageMetadata } from '@/lib/seo';
 
 type StackTechnology = { name: string; mark: string; icon?: string; color: string };
 type StackGroup = { title: string; items: StackTechnology[] };
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: 'Stack',
-  description: 'Languages, tools, and technologies Atila uses to build and explore.',
-};
+  description:
+    'Languages, tools, and technologies used by Atila Pashazadeh (Atila Pasha / آتیلا پاشازاده) — Python, FastAPI, PostgreSQL, PyTorch, and Docker.',
+  path: '/stack/',
+  keywords: ['FastAPI', 'PostgreSQL', 'PyTorch', 'Docker', 'Flet'],
+});
 
 const stackGroups: StackGroup[] = [
   {

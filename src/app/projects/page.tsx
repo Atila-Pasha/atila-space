@@ -6,11 +6,15 @@ import { getArticles, getNotes } from '@/content/loaders';
 import { githubProjects } from '@/data/githubProjects';
 import { publicAsset } from '@/lib/site';
 import { createSearchItems } from '@/lib/searchItems';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: 'Projects',
-  description: 'Selected projects and experiments by Atila Pasha.',
-};
+  description:
+    'Open-source software and experiments by Atila Pashazadeh (Atila Pasha / آتیلا پاشازاده) — ByteBeacon API, ByteVault, and more.',
+  path: '/projects/',
+  keywords: ['ByteBeacon API', 'ByteVault', 'God Of Dars', 'GitHub Atila-Pasha'],
+});
 
 export default async function ProjectsPage() {
   const [articles, notes] = await Promise.all([getArticles(), getNotes()]);

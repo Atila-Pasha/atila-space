@@ -43,14 +43,14 @@ export function HomePage({ articles, notes }: Props) {
     <section className="home-workspace">
       <WorkspaceTopbar items={searchItems} />
       <section className="home-stage" aria-labelledby="home-title">
-        <HomePortraitScene />
+        <HomePortraitScene alt="Atila Pashazadeh (Atila Pasha / آتیلا پاشازاده) portrait" />
         <div className="stage-vignette" aria-hidden="true" />
         <div className="hero-content">
           <div className="intro-copy">
             <div className="eyebrow"><Icon name="sparkle" /><span>PERSONAL SPACE</span><i /></div>
             <p className="hello-line">Hello, I’m</p>
             <h1 id="home-title">A<span>tila</span></h1>
-            <p className="nickname-line">But you can call me <strong>AtA</strong></p>
+            <p className="nickname-line">Atila Pashazadeh — or call me <strong>AtA</strong></p>
             <p className="role-line">Python Developer <b>·</b> Statistics Student <b>·</b> Lifelong Learner</p>
             <p className="hero-description">Exploring the intersection of code, mathematics,<br className="desktop-break" /> and human curiosity.</p>
             <div className="hero-actions">
@@ -65,7 +65,7 @@ export function HomePage({ articles, notes }: Props) {
           <StatCard count={githubProjects.length} label="Projects" />
           <div className="stat-card stat-latest-update"><strong>{latestUpdate ? formatShortDate(latestUpdate) : '—'}</strong><span>Latest update</span></div>
         </div>
-        <div className="scene-caption"><span /> A little space for ideas</div>
+        <div className="scene-caption"><span /> A little space for ideas · <bdi lang="fa" dir="rtl">آتیلا پاشازاده</bdi></div>
       </section>
     </section>
   </main>;

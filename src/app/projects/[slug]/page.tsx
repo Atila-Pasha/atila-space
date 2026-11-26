@@ -5,7 +5,14 @@ import { canonicalUrl } from '@/lib/site';
 export async function generateStaticParams() { return (await getProjects()).map(({ slug }) => ({ slug })); }
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params; const project = findBySlug(await getProjects(), slug);
-  return project ? { title: project.name, description: project.description, alternates: { canonical: canonicalUrl(`/projects/${slug}/`) } } : {};
+  if (!project) return { robots: { index: false, follow: false } };
+  const isPlaceholder = project.slug.startsWith('sample-') || project.status === 'planned';
+  return {
+    title: project.name,
+    description: project.description,
+    alternates: { canonical: canonicalUrl(`/projects/${slug}/`) },
+    ...(isPlaceholder ? { robots: { index: false, follow: false } } : {}),
+  };
 }
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params; const project = findBySlug(await getProjects(), slug); if (!project) notFound();

@@ -5,11 +5,14 @@ import { PortfolioSidebar } from '@/components/layout/PortfolioSidebar';
 import { WorkspaceTopbar } from '@/components/layout/WorkspaceTopbar';
 import { getArticles, getNotes } from '@/content/loaders';
 import { createSearchItems } from '@/lib/searchItems';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: 'Contact',
-  description: 'Get in touch with Atila Pasha for collaborations, questions, or a hello.',
-};
+  description:
+    'Get in touch with Atila Pashazadeh (Atila Pasha / آتیلا پاشازاده / آتیلا پاشا) via email, GitHub, Telegram, or Instagram.',
+  path: '/contact/',
+});
 
 export default async function ContactPage() {
   const [articles, notes] = await Promise.all([getArticles(), getNotes()]);
@@ -26,7 +29,7 @@ export default async function ContactPage() {
             <p className="page-eyebrow">LET’S CONNECT</p>
             <h1 id="contact-title">Contact</h1>
             <p className="contact-subtitle">Let’s connect.</p>
-            <p className="contact-intro">Feel free to reach out for collaborations, questions, or just to say hello!</p>
+            <p className="contact-intro">Feel free to reach out to Atila Pashazadeh (Atila Pasha / <bdi lang="fa" dir="rtl">آتیلا پاشازاده</bdi>) for collaborations, questions, or just to say hello!</p>
             <div className="contact-methods">
               <a className="contact-method" href="mailto:AtilaPashazdeh@gmail.com">
                 <span className="contact-method-icon"><Icon name="mail" /></span>

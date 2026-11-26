@@ -78,7 +78,7 @@ export function HomePortraitScene({
   return <div
     ref={sceneRef}
     className={sceneClassName}
-    aria-hidden="true"
+    aria-hidden={alt ? undefined : true}
   >
     <Image className={imageClassName} src={publicAsset(image)} alt={alt} fill priority sizes={sizes} />
     <div className="home-portrait-light" />
